@@ -36,6 +36,12 @@ export default function EditFoodItemPage() {
   const [pageLoading, setPageLoading] = useState(true);
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
 
+  
+const isValidCategory = (value: string): value is Category => {
+  return ['cake', 'cheesecake', 'brownie', 'cakeslice', 'other'].includes(value);
+};
+
+
   useEffect(() => {
     loadFoodItem();
   }, [id]);
@@ -54,7 +60,7 @@ export default function EditFoodItemPage() {
         name: item.name,
         description: item.description,
         price: item.price.toString(),
-        category: item.category,
+        category: isValidCategory(item.category) ? item.category : 'other',
         available: item.available,
       });
       
