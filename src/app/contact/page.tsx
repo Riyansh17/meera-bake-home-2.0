@@ -65,7 +65,7 @@ export default function ContactUsPage() {
                 <h3 className="text-xl font-bold text-cream-500 mb-3">Call Us</h3>
                 <p className="text-cream-400 leading-relaxed">
                   <a href="tel:917073301913" className="text-gold-500 hover:text-gold-400 transition-colors font-medium text-lg">
-                    (707) 330-1913
+                    (+91) 7073301913
                   </a><br />
                   <span className="text-sm">For orders & inquiries</span>
                 </p>
