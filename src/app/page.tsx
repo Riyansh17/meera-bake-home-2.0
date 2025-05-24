@@ -45,7 +45,7 @@ export default function MeeraBakeHome() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center space-x-2 bg-coral-500/20 backdrop-blur-sm rounded-full px-6 py-3 border border-coral-500/30">
                 <Sparkles className="w-4 h-4 text-gold-500" />
-                <span className="text-cream-500 text-sm font-medium tracking-wide">EST. 2024</span>
+                <span className="text-cream-500 text-sm font-medium tracking-wide">EST. 2023</span>
                 <Sparkles className="w-4 h-4 text-gold-500" />
               </div>
             </div>

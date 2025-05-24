@@ -12,12 +12,12 @@ export default function ContactUsPage() {
 
   return (
     <div className="min-h-screen bg-brand-dark relative overflow-hidden">
-      
+
       {/* Background effects */}
       <div className="absolute top-20 right-20 w-64 h-64 bg-coral-500 rounded-full opacity-10 blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 left-20 w-80 h-80 bg-gold-500 rounded-full opacity-10 blur-3xl animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-cream-500 rounded-full opacity-5 blur-3xl"></div>
-      
+
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
         {/* Header Section */}
         <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
@@ -26,7 +26,7 @@ export default function ContactUsPage() {
             <span className="text-cream-500 text-sm font-medium tracking-wide">GET IN TOUCH</span>
             <Heart className="w-4 h-4 text-gold-500" />
           </div>
-          
+
           <h1 className="text-5xl md:text-6xl font-black text-transparent bg-gradient-to-r from-coral-500 via-gold-500 to-coral-500 bg-clip-text mb-4">
             CONTACT US
           </h1>
@@ -47,8 +47,9 @@ export default function ContactUsPage() {
                 </div>
                 <h3 className="text-xl font-bold text-cream-500 mb-3">Visit Us</h3>
                 <p className="text-cream-400 leading-relaxed">
-                  123 Baker Street<br />
-                  Sweet Valley, SV 12345<br />
+                  Outside Chandpole,<br />
+                  Bhinder ki Haveli,<br />
+                  Udaipur (Raj) (313001)<br />
                   <span className="text-coral-500 font-medium">Home Based Bakery</span>
                 </p>
               </div>
@@ -63,8 +64,8 @@ export default function ContactUsPage() {
                 </div>
                 <h3 className="text-xl font-bold text-cream-500 mb-3">Call Us</h3>
                 <p className="text-cream-400 leading-relaxed">
-                  <a href="tel:+1234567890" className="text-gold-500 hover:text-gold-400 transition-colors font-medium text-lg">
-                    +91 98765 43210
+                  <a href="tel:917073301913" className="text-gold-500 hover:text-gold-400 transition-colors font-medium text-lg">
+                    (707) 330-1913
                   </a><br />
                   <span className="text-sm">For orders & inquiries</span>
                 </p>
@@ -103,11 +104,11 @@ export default function ContactUsPage() {
                   </div>
                   <h3 className="text-2xl font-bold text-cream-500">Business Hours</h3>
                 </div>
-                
+
                 <div className="space-y-3 text-cream-400">
                   <div className="flex justify-between items-center py-2 border-b border-coral-500/20">
                     <span className="font-medium">Monday - Friday</span>
-                    <span className="text-gold-500">9:00 AM - 7:00 PM</span>
+                    <span className="text-gold-500">8:00 AM - 8:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-coral-500/20">
                     <span className="font-medium">Saturday</span>
@@ -131,14 +132,14 @@ export default function ContactUsPage() {
                   </div>
                   <h3 className="text-2xl font-bold text-cream-500">Quick Orders</h3>
                 </div>
-                
+
                 <div className="space-y-4">
                   <p className="text-cream-400 leading-relaxed">
                     Need something urgently? Message us on WhatsApp for quick orders and instant responses!
                   </p>
-                  
-                  <a 
-                    href="https://wa.me/919876543210?text=Hi%20Meera%20Bake%20Home,%20I'd%20like%20to%20place%20an%20order!"
+
+                  <a
+                    href="https://wa.me/7073301913?text=Hi%20Meera%20Bake%20Home,%20I'd%20like%20to%20place%20an%20order!"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-2 bg-gradient-to-r from-whatsapp-500 to-whatsapp-600 text-white font-bold py-3 px-6 rounded-xl hover:scale-105 transition-all"
@@ -167,7 +168,7 @@ export default function ContactUsPage() {
           </div>
         </div>
 
-        {/* Call to Action */}
+        {/* Call to Action 
         <div className={`text-center transform transition-all duration-1000 delay-900 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <div className="relative inline-block">
             <div className="absolute inset-0 bg-gradient-to-r from-coral-500/30 to-gold-500/30 rounded-2xl blur-lg"></div>
@@ -184,7 +185,7 @@ export default function ContactUsPage() {
                     <span>Call Now</span>
                   </div>
                 </button>
-                
+
                 <button className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-gold-500 to-coral-500 rounded-xl blur-sm group-hover:blur-md transition-all"></div>
                   <div className="relative bg-gradient-to-r from-gold-500 to-coral-500 text-brand-dark font-bold py-4 px-8 rounded-xl transform group-hover:scale-105 transition-all flex items-center space-x-2">
@@ -195,7 +196,7 @@ export default function ContactUsPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div>*/}
       </div>
 
       {/* Custom animations */}

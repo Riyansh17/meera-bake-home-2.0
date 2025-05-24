@@ -152,7 +152,7 @@ Total Amount: ${formatCurrency(orderData.totalAmount)}
         {/* Header Section */}
         <div className="mb-8 sm:mb-12">
           <Link
-            href="/"
+            href="/menu"
             className="group inline-flex items-center space-x-2 sm:space-x-3 text-cream-400 hover:text-coral-500 transition-colors mb-4 sm:mb-6"
           >
             <div className="p-1.5 sm:p-2 rounded-full bg-coral-500/10 group-hover:bg-coral-500/20 transition-colors">

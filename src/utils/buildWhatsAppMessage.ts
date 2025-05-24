@@ -1,13 +1,25 @@
 import { CartItem } from '@/types/item';
 import { formatCurrency } from './formatCurrency';
 
+interface OrderData {
+  items: CartItem[];
+  customerName: string;
+  customerPhone: string;
+  customerAddress?: string;
+  occasion?: string;
+  orderType: 'takeaway' | 'delivery';
+  specialNotes?: string;
+  deliveryCharge?: number;
+  totalAmount: number;
+}
+
 export const buildWhatsAppMessage = (
-  cartItems: CartItem[],
+  items: CartItem[],
   customerName: string = '',
   customerPhone: string = '',
-  notes: string = ''
+  additionalInfo: string = ''
 ): string => {
-  const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const itemsTotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   
   let message = `🛒 *New Order Request*\n\n`;
   
@@ -20,23 +32,82 @@ export const buildWhatsAppMessage = (
   }
   
   message += `\n📋 *Order Details:*\n`;
-  message += `${'-'.repeat(25)}\n`;
+  message += `${'-'.repeat(30)}\n`;
   
-  cartItems.forEach((item, index) => {
+  items.forEach((item, index) => {
     message += `${index + 1}. *${item.name}*\n`;
     message += `   Qty: ${item.quantity} × ${formatCurrency(item.price)}\n`;
     message += `   Subtotal: ${formatCurrency(item.price * item.quantity)}\n\n`;
   });
   
-  message += `${'-'.repeat(25)}\n`;
-  message += `💰 *Total: ${formatCurrency(total)}*\n\n`;
+  message += `${'-'.repeat(30)}\n`;
+  message += `💰 *Items Total: ${formatCurrency(itemsTotal)}*\n`;
   
-  if (notes) {
-    message += `📝 *Special Notes:*\n${notes}\n\n`;
+  if (additionalInfo) {
+    message += `\n📋 *Order Information:*\n${additionalInfo}\n`;
+  }
+  
+  message += `\n⏰ *Order Time:* ${new Date().toLocaleString()}\n\n`;
+  message += `Please confirm this order and let us know the estimated preparation time. Thank you! 🙏`;
+  
+  return message;
+};
+
+// Alternative function for structured order data
+export const buildStructuredWhatsAppMessage = (orderData: OrderData): string => {
+  let message = `🛒 *New Order Request*\n\n`;
+  
+  // Customer Information
+  message += `👤 *Customer Details:*\n`;
+  message += `• Name: ${orderData.customerName}\n`;
+  message += `• Phone: ${orderData.customerPhone}\n`;
+  
+  // Order Type and Address
+  message += `• Order Type: ${orderData.orderType.charAt(0).toUpperCase() + orderData.orderType.slice(1)}\n`;
+  if (orderData.orderType === 'delivery' && orderData.customerAddress) {
+    message += `• Delivery Address: ${orderData.customerAddress}\n`;
+  }
+  
+  // Occasion
+  if (orderData.occasion && orderData.occasion !== 'Not specified') {
+    message += `• Occasion: ${orderData.occasion}\n`;
+  }
+  
+  message += `\n📋 *Order Details:*\n`;
+  message += `${'-'.repeat(35)}\n`;
+  
+  // Items
+  orderData.items.forEach((item, index) => {
+    message += `${index + 1}. *${item.name}*\n`;
+    message += `   Qty: ${item.quantity} × ${formatCurrency(item.price)}\n`;
+    message += `   Subtotal: ${formatCurrency(item.price * item.quantity)}\n\n`;
+  });
+  
+  message += `${'-'.repeat(35)}\n`;
+  
+  // Pricing breakdown
+  const itemsTotal = orderData.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  message += `💰 *Items Total: ${formatCurrency(itemsTotal)}*\n`;
+  
+  if (orderData.orderType === 'delivery' && orderData.deliveryCharge) {
+    message += `🚚 *Delivery Charge: ${formatCurrency(orderData.deliveryCharge)}*\n`;
+  }
+  
+  message += `🏆 *Final Total: ${formatCurrency(orderData.totalAmount)}*\n\n`;
+  
+  // Special Notes
+  if (orderData.specialNotes && orderData.specialNotes !== 'None') {
+    message += `📝 *Special Notes:*\n${orderData.specialNotes}\n\n`;
   }
   
   message += `⏰ *Order Time:* ${new Date().toLocaleString()}\n\n`;
-  message += `Please confirm this order. Thank you! 🙏`;
+  message += `Please confirm this order and let us know:\n`;
+  message += `• Availability of items\n`;
+  message += `• Estimated preparation time\n`;
+  if (orderData.orderType === 'delivery') {
+    message += `• Delivery time estimate\n`;
+  }
+  message += `\nThank you! 🙏`;
   
   return message;
 };

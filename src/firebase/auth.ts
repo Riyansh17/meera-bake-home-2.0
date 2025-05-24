@@ -1,5 +1,3 @@
-// Simple password-based auth for demo purposes
-// In production, use Firebase Authentication properly
 
 export const adminLogin = (password: string): boolean => {
   const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123';

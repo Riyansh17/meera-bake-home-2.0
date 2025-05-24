@@ -93,8 +93,8 @@ const Footer = () => {
               <div className="space-y-3">
                 <div className="flex items-center justify-center space-x-2">
                   <Phone className="w-4 h-4 text-gold-500" />
-                  <a href="tel:+1234567890" className="text-sm text-cream-400 hover:text-gold-500 transition-colors duration-300">
-                    (123) 456-7890
+                  <a href="tel:+917073301913" className="text-sm text-cream-400 hover:text-gold-500 transition-colors duration-300">
+                    (707) 330-1913
                   </a>
                 </div>
 
@@ -108,8 +108,8 @@ const Footer = () => {
                 <div className="flex items-center justify-center space-x-2">
                   <Clock className="w-4 h-4 text-gold-500" />
                   <div className="text-sm text-cream-400 text-center">
-                    <p>Mon-Sat: 7AM-8PM</p>
-                    <p>Sunday: 8AM-6PM</p>
+                    <p>Mon-Sat: 8AM-8PM</p>
+                    <p>Sunday: 9AM-6PM</p>
                   </div>
                 </div>
               </div>
@@ -158,9 +158,9 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-cream-400 leading-relaxed text-sm lg:text-base">
-                      123 Sweet Street<br />
-                      Bakery District<br />
-                      City, State 12345
+                      Outside Chandpole,<br />
+                      Bhinder ki Haveli,<br />
+                      Udaipur (Raj) (313001)
                     </p>
                   </div>
                 </div>
@@ -169,8 +169,8 @@ const Footer = () => {
                   <div className="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-gold-500/20 to-coral-500/20 rounded-full flex items-center justify-center group-hover:from-gold-500/30 group-hover:to-coral-500/30 transition-all duration-300">
                     <Phone className="w-3 h-3 lg:w-4 lg:h-4 text-gold-500" />
                   </div>
-                  <a href="tel:+1234567890" className="text-cream-400 hover:text-gold-500 transition-colors duration-300 text-sm lg:text-base">
-                    (123) 456-7890
+                  <a href="tel:+917073301913" className="text-cream-400 hover:text-gold-500 transition-colors duration-300 text-sm lg:text-base">
+                    (707) 330-1913
                   </a>
                 </div>
 
@@ -188,8 +188,8 @@ const Footer = () => {
                     <Clock className="w-3 h-3 lg:w-4 lg:h-4 text-gold-500" />
                   </div>
                   <div className="text-cream-400">
-                    <p className="text-sm lg:text-base">Mon-Sat: 7AM-8PM</p>
-                    <p className="text-sm lg:text-base">Sunday: 8AM-6PM</p>
+                    <p className="text-sm lg:text-base">Monday - Friday: 8AM-8PM</p>
+                    <p className="text-sm lg:text-base">Saturday: 9AM-6PM</p>
                   </div>
                 </div>
               </div>
