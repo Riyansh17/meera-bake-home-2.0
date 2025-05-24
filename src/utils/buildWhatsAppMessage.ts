@@ -117,5 +117,5 @@ export const buildWhatsAppURL = (message: string, phoneNumber?: string): string 
   const number = phoneNumber || defaultNumber;
   const encodedMessage = encodeURIComponent(message);
   
-  return `https://wa.me/${number}?text=${encodedMessage}`;
+  return `https://wa.me/917073301913?text=${encodedMessage}`;
 };
