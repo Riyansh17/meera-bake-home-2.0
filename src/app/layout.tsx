@@ -1,26 +1,25 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { CartProvider } from '@/context/CartContext';
-import { Toaster } from 'react-hot-toast';
-
-const inter = Inter({ subsets: ['latin'] });
+import type { Metadata } from 'next'
+import { inter, playfair } from '@/lib/font'  // Import from fonts.ts
+import './globals.css'
+import { CartProvider } from '@/context/CartContext'
+import { Toaster } from 'react-hot-toast'
+import LayoutContent from '@/components/layout/LayoutContent'
 
 export const metadata: Metadata = {
   title: 'WhatsApp Food Ordering System',
   description: 'Order food easily through WhatsApp',
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`min-h-screen flex flex-col ${inter.variable} ${playfair.variable}`}>
         <CartProvider>
-          {children}
+          <LayoutContent>{children}</LayoutContent>
           <Toaster 
             position="top-right"
             toastOptions={{
@@ -34,5 +33,5 @@ export default function RootLayout({
         </CartProvider>
       </body>
     </html>
-  );
+  )
 }

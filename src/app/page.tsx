@@ -1,108 +1,122 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { FoodItem } from '@/types/item';
-import { getAvailableFoodItems } from '@/firebase/db';
-import FoodItemCard from '@/components/FoodItems';
-import Navbar from '@/components/Navbar';
-import { Search, Filter } from 'lucide-react';
-import toast from 'react-hot-toast';
+import React, { useState, useEffect } from 'react';
+import { Cookie, Sparkles, ArrowRight } from 'lucide-react';
 
-export default function HomePage() {
-  const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+export default function MeeraBakeHome() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    loadFoodItems();
+    setIsVisible(true);
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const loadFoodItems = async () => {
-    try {
-      const items = await getAvailableFoodItems();
-      setFoodItems(items);
-    } catch (error) {
-      console.error('Error loading food items:', error);
-      toast.error('Failed to load menu items');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const filteredItems = foodItems.filter(item => {
-    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-    
-    return matchesSearch && matchesCategory;
-  });
-
-  const categories = ['all', ...Array.from(new Set(foodItems.map(item => item.category)))];
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
+    <div className="min-h-screen relative overflow-hidden bg-brand-dark">
+      {/* Dynamic background with mouse interaction */}
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(248, 171, 172, 0.3) 0%, rgba(252, 214, 128, 0.2) 30%, transparent 70%)`
+        }}
+      />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Our Menu</h1>
-          <p className="text-gray-600">Choose your favorite dishes and order through WhatsApp</p>
-        </div>
+      {/* Geometric shapes */}
+      <div className="absolute top-20 left-20 w-64 h-64 bg-coral-500 rounded-full opacity-10 blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-20 w-80 h-80 bg-gold-500 rounded-full opacity-10 blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cream-500 rounded-full opacity-5 blur-3xl"></div>
 
-        {/* Search and Filter */}
-        <div className="mb-8 flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-            <input
-              type="text"
-              placeholder="Search for food..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            />
-          </div>
-          
-          <div className="relative">
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
-            >
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category === 'all' ? 'All Categories' : category.charAt(0).toUpperCase() + category.slice(1)}
-                </option>
-              ))}
-            </select>
+      {/* Main content */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center">
+        <div className="container mx-auto px-6">
+          <div className={`transform transition-all duration-1500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
+            
+            {/* Decorative text above */}
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center space-x-2 bg-coral-500/20 backdrop-blur-sm rounded-full px-6 py-3 border border-coral-500/30">
+                <Sparkles className="w-4 h-4 text-gold-500" />
+                <span className="text-cream-500 text-sm font-medium tracking-wide">EST. 2024</span>
+                <Sparkles className="w-4 h-4 text-gold-500" />
+              </div>
+            </div>
+
+            {/* Main brand name with creative layout */}
+            <div className="text-center mb-12">
+              <div className="relative">
+                <h1 className="text-8xl md:text-9xl font-black tracking-tight">
+                  <span className="block text-cream-500 leading-none">MEERA</span>
+                  <span className="block text-transparent bg-gradient-to-r from-coral-500 via-gold-500 to-coral-500 bg-clip-text leading-none -mt-4">BAKE</span>
+                </h1>
+                
+                {/* Decorative cookie icon */}
+                <div className="absolute -top-8 -right-8 md:-right-16">
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-gold-500 to-coral-500 rounded-full flex items-center justify-center animate-spin-slow shadow-2xl">
+                    <Cookie className="w-8 h-8 md:w-10 md:h-10 text-brand-dark" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Subtitle with modern typography */}
+              <div className="mt-8 space-y-2">
+                <p className="text-2xl md:text-3xl text-gold-500 font-light tracking-widest">H O M E</p>
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-coral-500 to-transparent mx-auto"></div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className={`text-center mb-16 transform transition-all duration-1500 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+              <p className="text-lg md:text-xl text-cream-400 max-w-2xl mx-auto font-light leading-relaxed">
+                Artisanal baked goods crafted with passion, served with love from our kitchen to your table
+              </p>
+            </div>
+
+            {/* CTA with modern design */}
+            <div className={`text-center transform transition-all duration-1500 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+              <a href="/menu" className="group relative inline-flex items-center">
+                {/* Button background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-coral-500 to-gold-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Button content */}
+                <div className="relative bg-gradient-to-r from-coral-500 to-gold-500 text-brand-dark px-12 py-4 rounded-full font-bold text-lg tracking-wide hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center">
+                  EXPLORE MENU
+                  <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </a>
+            </div>
+
+            {/* Bottom decorative element */}
+            <div className={`text-center mt-20 transform transition-all duration-1500 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+              <div className="flex justify-center space-x-4">
+                <div className="w-2 h-2 bg-coral-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse delay-300"></div>
+                <div className="w-2 h-2 bg-cream-500 rounded-full animate-pulse delay-500"></div>
+              </div>
+            </div>
+
           </div>
         </div>
-
-        {/* Food Items Grid */}
-        {filteredItems.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No items found matching your criteria</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredItems.map(item => (
-              <FoodItemCard key={item.id} item={item} />
-            ))}
-          </div>
-        )}
       </div>
+
+      {/* Custom CSS for slow spin animation */}
+      <style jsx>{`
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }
